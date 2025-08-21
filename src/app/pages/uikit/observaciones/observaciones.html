@@ -1,0 +1,52 @@
+<p-card header="Revisión de Documentos" styleClass="shadow-2" [style]="{ 'margin': '2em' }">
+  <ng-container *ngIf="sinObservaciones; else conObservaciones">
+    <div class="p-field mb-4">
+      <h2 class="text-2xl font-semibold text-green-600 mb-2">¡Documentos Aceptados! 🎉</h2>
+      <p>Su formulario ha sido revisado y aprobado sin ninguna observación.</p>
+    </div>
+
+    <div class="p-field mb-4">
+      <h3 class="text-lg font-semibold mb-2">Documentos aceptados sin observaciones:</h3>
+      <p-panel header="Documentos Aceptados">
+        <ul class="list-disc ml-4">
+          <li *ngFor="let doc of documentosAceptados" class="font-medium">
+            <i class="pi pi-check-circle text-green-500 mr-2"></i> {{ doc }}
+          </li>
+        </ul>
+      </p-panel>
+    </div>
+  </ng-container>
+
+  <ng-template #conObservaciones>
+    <div class="p-fluid">
+      <div class="p-field mb-4">
+        <h2 class="text-2xl font-semibold text-red-600 mb-2">Detalles de la Revisión</h2>
+        <p>
+          El formulario enviado contiene las siguientes observaciones. Por favor, corríjalas y vuelva a subir los datos.
+        </p>
+      </div>
+
+      <div class="p-field mb-4">
+        <h3 class="text-lg font-semibold mb-2">Errores detectados:</h3>
+        <p-panel header="Observaciones" [toggleable]="true">
+          <ul class="list-disc ml-4">
+            <li *ngFor="let obs of observaciones" class="text-red-500 font-medium">
+              <i class="pi pi-exclamation-triangle text-red-500 mr-2"></i> {{ obs }}
+            </li>
+          </ul>
+        </p-panel>
+      </div>
+    </div>
+    
+    <div class="p-field mb-4">
+      <h3 class="text-lg font-semibold mb-2">Datos para corregir:</h3>
+      <p-panel header="Datos del Formulario" [toggleable]="true">
+        <pre>{{ datosFormulario | json }}</pre>
+      </p-panel>
+    </div>
+    
+    <div class="flex justify-content-end mt-4">
+      <p-button label="Volver a subir datos" icon="pi pi-upload" severity="success" (click)="volverAFormulario()"></p-button>
+    </div>
+  </ng-template>
+</p-card>

@@ -1,0 +1,180 @@
+<div class="flex h-screen justify-content-center align-items-center image-background-column">
+    <div class="card p-5 w-full md:w-3/4 lg:w-2/3 xl:w-1/2 overflow-y-auto">
+        
+        <div class="font-semibold text-2xl text-center mb-5">FORMULARIO PARA EL EMPLEADO</div>
+
+        <form (ngSubmit)="enviarFormulario()" class="p-fluid">
+
+            <h2 class="text-xl font-semibold mb-4">INFORMACIÓN PERSONAL / LEGAL</h2>
+
+            <div class="grid grid-cols-1 gap-6 mb-4">
+                <div class="field">
+                    <label for="nombres" class="block font-bold mb-2">Nombres y apellidos completos</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                        <input id="nombres" type="text" pInputText [(ngModel)]="trabajador.nombresApellidos" name="nombres" required class="w-full">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="fechaNacimiento" class="block font-bold mb-2">Fecha de nacimiento</label>
+                    <p-datepicker [showIcon]="true" [showButtonBar]="true" [(ngModel)]="trabajador.fechaNacimiento" name="fechaNacimiento" class="w-full"></p-datepicker>
+                </div>
+
+                <div class="field">
+                    <label for="nacionalidad" class="block font-bold mb-2">Nacionalidad</label>
+                    <input id="nacionalidad" type="text" pInputText [(ngModel)]="trabajador.nacionalidad" name="nacionalidad" class="w-full">
+                </div>
+
+                <div class="field">
+                    <label for="ciNumero" class="block font-bold mb-2">Carnet de Identidad (Número)</label>
+                    <input id="ciNumero" type="text" pInputText [(ngModel)]="trabajador.ciNumero" name="ciNumero" required class="w-full">
+                </div>
+
+                <div class="field">
+                    <label for="ciLugarEmision" class="block font-bold mb-2">Lugar de emisión</label>
+                    <p-select id="ciLugarEmision" [(ngModel)]="trabajador.ciLugarEmision" name="ciLugarEmision" [options]="lugaresEmision" optionLabel="name" class="w-full"></p-select>
+                </div>
+
+                <div class="field">
+                    <label for="ciFechaEmision" class="block font-bold mb-2">Fecha de emisión del CI</label>
+                    <p-datepicker [showIcon]="true" [showButtonBar]="true" [(ngModel)]="trabajador.ciFechaEmision" name="ciFechaEmision" class="w-full"></p-datepicker>
+                </div>
+
+                <div class="field">
+                    <label for="ciFechaVencimiento" class="block font-bold mb-2">Fecha de vencimiento del CI</label>
+                    <p-datepicker [showIcon]="true" [showButtonBar]="true" [(ngModel)]="trabajador.ciFechaVencimiento" name="ciFechaVencimiento" class="w-full"></p-datepicker>
+                </div>
+
+                <div class="field">
+                    <label for="nit" class="block font-bold mb-2">NIT (Número)</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                        <input id="nit" type="text" pInputText [(ngModel)]="trabajador.nit" name="nit" class="w-full">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="celular" class="block font-bold mb-2">Número de celular</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-mobile"></i></span>
+                        <input id="celular" type="text" pInputText [(ngModel)]="trabajador.numeroCelular" name="celular" class="w-full">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="telefonoFijo" class="block font-bold mb-2">Teléfono fijo (opcional)</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-phone"></i></span>
+                        <input id="telefonoFijo" type="text" pInputText [(ngModel)]="trabajador.numeroTelefonoFijo" name="telefonoFijo" class="w-full">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="direccion" class="block font-bold mb-2">Dirección del domicilio</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-map-marker"></i></span>
+                        <input id="direccion" type="text" pInputText [(ngModel)]="trabajador.direccionDomicilio" name="direccion" class="w-full">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="block font-bold mb-2">Foto</label>
+                    <p-fileUpload name="foto" customUpload="true" (uploadHandler)="onUpload($event, 'foto')" accept="image/*" maxFileSize="1000000" chooseLabel="Subir Foto" class="w-full">
+                        <ng-template pTemplate="content">
+                            <div class="flex align-items-center justify-content-center flex-column">
+                                <i class="pi pi-cloud-upload text-2xl" style="color: var(--primary-color);"></i>
+                                <p>Arrastra y suelta tu foto aquí</p>
+                            </div>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+            </div>
+
+            <h2 class="text-xl font-semibold mb-4 mt-6">INFORMACIÓN CONTRACTUAL</h2>
+
+            <div class="grid grid-cols-1 gap-6 mb-4">
+                <div class="field">
+                    <label for="tipoContrato" class="block font-bold mb-2">Tipo de contrato</label>
+                    <p-select id="tipoContrato" [(ngModel)]="trabajador.tipoContrato" name="tipoContrato" [options]="tiposContrato" optionLabel="name" required class="w-full"></p-select>
+                </div>
+
+                <div class="field">
+                    <label for="fechaInicio" class="block font-bold mb-2">Fecha de inicio</label>
+                    <p-datepicker [showIcon]="true" [showButtonBar]="true" [(ngModel)]="trabajador.fechaInicioContrato" name="fechaInicio" class="w-full"></p-datepicker>
+                </div>
+
+                <div class="field">
+                    <label for="fechaFin" class="block font-bold mb-2">Fecha de finalización (opcional)</label>
+                    <p-datepicker [showIcon]="true" [showButtonBar]="true" [(ngModel)]="trabajador.fechaFinalizacionContrato" name="fechaFin" class="w-full"></p-datepicker>
+                </div>
+
+                <div class="field flex items-center">
+                    <p-checkbox id="aprobacion" [(ngModel)]="trabajador.aprobacionAsesorLegal" [binary]="true" name="aprobacion"></p-checkbox>
+                    <label for="aprobacion" class="ml-2">Aprobación de asesor legal</label>
+                </div>
+
+                <div class="field">
+                    <label for="numeroAutorizacion" class="block font-bold mb-2">Número de autorización (opcional)</label>
+                    <input id="numeroAutorizacion" type="text" pInputText [(ngModel)]="trabajador.numeroAutorizacionContrato" name="numeroAutorizacion" class="w-full">
+                </div>
+
+                <div class="field flex items-center">
+                    <p-checkbox id="titulo" [(ngModel)]="trabajador.tieneTituloProfesional" [binary]="true" name="titulo"></p-checkbox>
+                    <label for="titulo" class="ml-2">Cuenta con título profesional</label>
+                </div>
+            </div>
+
+            <div class="field mb-4" *ngIf="trabajador.tieneTituloProfesional">
+                <label class="block font-bold mb-2">Adjuntar Título</label>
+                <p-fileUpload name="tituloProfesional" customUpload="true" (uploadHandler)="onUpload($event, 'titulo')" maxFileSize="1000000" chooseLabel="Adjuntar Título" class="w-full">
+                    <ng-template pTemplate="content">
+                        <div class="flex align-items-center justify-content-center flex-column">
+                            <i class="pi pi-cloud-upload text-2xl" style="color: var(--primary-color);"></i>
+                            <p>Arrastra y suelta el título aquí</p>
+                        </div>
+                    </ng-template>
+                </p-fileUpload>
+            </div>
+            
+
+            <h2 class="text-xl font-semibold mb-4 mt-6">EXPERIENCIA LABORAL</h2>
+
+            <div *ngFor="let exp of experiencias; let i = index">
+                <div class="grid grid-cols-1 gap-6 mb-4">
+                    <div class="field">
+                        <label [for]="'empresa' + i" class="block font-bold mb-2">Empresa #{{ i + 1 }}</label>
+                        <input [id]="'empresa' + i" type="text" pInputText [(ngModel)]="exp.empresa" [name]="'empresa' + i" class="w-full">
+                    </div>
+
+                    <div class="field">
+                        <label [for]="'cargo' + i" class="block font-bold mb-2">Cargo</label>
+                        <input [id]="'cargo' + i" type="text" pInputText [(ngModel)]="exp.cargo" [name]="'cargo' + i" class="w-full">
+                    </div>
+
+                    <div class="field">
+                        <label [for]="'fechaInicioExp' + i" class="block font-bold mb-2">Fecha de inicio</label>
+                        <p-datepicker [id]="'fechaInicioExp' + i" [showIcon]="true" [showButtonBar]="true" [(ngModel)]="exp.fechaInicio" [name]="'fechaInicioExp' + i" class="w-full"></p-datepicker>
+                    </div>
+
+                    <div class="field">
+                        <label [for]="'fechaFinExp' + i" class="block font-bold mb-2">Fecha de finalización</label>
+                        <p-datepicker [id]="'fechaFinExp' + i" [showIcon]="true" [showButtonBar]="true" [(ngModel)]="exp.fechaFin" [name]="'fechaFinExp' + i" class="w-full"></p-datepicker>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <p-button label="Agregar experiencia laboral" icon="pi pi-plus" (click)="agregarExperiencia()" [disabled]="experiencias.length >= 5" severity="info"></p-button>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center md:justify-end gap-3 mt-6">
+                <p-button label="Limpiar" icon="pi pi-times" severity="danger" type="button" (click)="limpiarFormulario()"></p-button>
+                <p-button label="Enviar" icon="pi pi-check" severity="success" type="submit"></p-button>
+            </div>
+            
+        </form>
+
+        
+    </div>
+</div>

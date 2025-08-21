@@ -1,0 +1,14 @@
+.image-background-column {
+ 
+    background-image: url('../../../../assets/img/anh_logo_colorcolor.png'); 
+ 
+    background-image: url('../assets/anh_logo_colorcolor.png'); 
+    width: 100px; 
+    height: 100px; 
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    //height: 100%;
+}

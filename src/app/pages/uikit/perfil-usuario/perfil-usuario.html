@@ -1,0 +1,105 @@
+<div class="perfil-usuario-container min-h-screen p-5 flex align-items-center justify-content-center">
+
+  <div class="surface-card p-4 shadow-2 border-round-3xl w-full" style="max-width: 1000px;">
+    
+    <div class="text-center mb-5">
+      <p class="text-3xl font-bold">{{ usuario.nombre }} {{usuario.apellido}}</p>
+    </div>
+
+    <div class="grid">
+      
+      <div class="col-12 md:col-4">
+        <p-panel header="ANTONIO" styleClass="h-full" headerClass="antonio">
+          <div class="flex flex-column align-items-center">
+            <img [src]="usuario.avatarUrl" alt="Avatar" class="w-10rem h-10rem shadow-2 mb-3">
+            <blockquote class="text-center text-color-secondary font-italic m-0">
+              "Tomo decisiones rápidas y siempre suelo acertar."
+            </blockquote>
+          </div>
+        </p-panel>
+      </div>
+
+      <div class="col-12 md:col-8">
+        <div class="grid">
+          
+          <div class="col-12 md:col-6">
+            <p-panel header="Demografía" styleClass="h-full" headerClass="demografia">
+              <ul class="list-none p-0 m-0">
+                <li><strong>Profesión:</strong> {{ usuario.profesion }}</li>
+                <li><strong>Ingresos:</strong> {{ usuario.ingresos }}</li>
+                <li><strong>Edad:</strong> {{ usuario.edad }} años.</li>
+              </ul>
+            </p-panel>
+          </div>
+          
+          <div class="col-12 md:col-6">
+            <p-panel header="Tecnología" styleClass="h-full" headerClass="tecnologia">
+              <ul class="list-none p-0 m-0">
+                <li>Smartphone y portátil.</li>
+                <li>Altos conocimientos de informática.</li>
+              </ul>
+            </p-panel>
+          </div>
+          
+          <div class="col-12 md:col-6 mt-4">
+            <p-panel header="Personal" styleClass="h-full" headerClass="personal">
+              <ul class="list-none p-0 m-0">
+                <li>Casado.</li>
+                <li>1 niño.</li>
+                <li>Decide rápido.</li>
+                <li>Sabe lo que quiere.</li>
+              </ul>
+            </p-panel>
+          </div>
+          
+          <div class="col-12 md:col-6 mt-4">
+            <p-panel header="Motivaciones" styleClass="h-full" headerClass="motivaciones">
+              <ul class="list-none p-0 m-0">
+                <li>Encontrar coche nuevo.</li>
+                <li>Le importa el precio del vehículos y las condiciones de financiación.</li>
+              </ul>
+            </p-panel>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="grid mt-5">
+      
+      <div class="col-12 md:col-3">
+        <p-panel header="Objetivo" styleClass="h-full" headerClass="objetivo">
+          Encontrar anuncios de coches nuevos.
+        </p-panel>
+      </div>
+      
+      <div class="col-12 md:col-3">
+        <p-panel header="Escenario" styleClass="h-full" headerClass="escenario">
+          <ul class="list-none p-0 m-0">
+            <li>Navegando desde el portátil mientras está en trabajo.</li>
+            <li>Desde el móvil mientras ve la TV por la noche.</li>
+          </ul>
+        </p-panel>
+      </div>
+      
+      <div class="col-12 md:col-3">
+        <p-panel header="Características" styleClass="h-full" headerClass="caracteristicas">
+          <ul class="list-none p-0 m-0">
+            <li>Usará el buscador de la página de resultados.</li>
+            <li>Usará las opciones de ordenación de resultados de la página.</li>
+          </ul>
+        </p-panel>
+      </div>
+      
+      <div class="col-12 md:col-3">
+        <p-panel header="Acciones" styleClass="h-full" headerClass="acciones">
+          <ul class="list-none p-0 m-0">
+            <li>Bucará por marca + Modelo + provincia.</li>
+            <li>Reducirá el número de resultados incluyendo rango de precio y filtrando por profesional + financiación.</li>
+            <li>Ordenará de más barato a más caro.</li>
+            <li>Contactará enviando formulario.</li>
+          </ul>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>

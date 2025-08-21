@@ -1,0 +1,15 @@
+/* src/app/pages/renovar-formulario/renovar-formulario.scss */
+
+:host {
+  display: block;
+}
+
+.p-card .p-panel {
+  overflow: hidden;
+}
+
+.p-dialog {
+  .p-dialog-content {
+    overflow: visible;
+  }
+}

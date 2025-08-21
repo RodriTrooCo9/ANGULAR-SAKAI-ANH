@@ -1,0 +1,26 @@
+<p-dialog header="Revisar Formulario" [(visible)]="displayDialogRevisar" [modal]="true">
+    <div *ngIf="formularioSeleccionado">
+        <p>Empresa: {{ formularioSeleccionado.empresa.nombre }}</p>
+        <div>
+            <p-checkbox [(ngModel)]="aprobacionDatosEmpresa" label="Datos de Empresa" binary="true"></p-checkbox>
+            <p-checkbox [(ngModel)]="aprobacionReferencias" label="Referencias" binary="true"></p-checkbox>
+            <p-checkbox [(ngModel)]="aprobacionEmpleados" label="Empleados" binary="true"></p-checkbox>
+            <p-checkbox [(ngModel)]="aprobacionExperiencia" label="Experiencia" binary="true"></p-checkbox>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button label="Aprobar" (click)="aprobarFormulario()" [disabled]="!aprobacionDatosEmpresa || !aprobacionReferencias || !aprobacionEmpleados || !aprobacionExperiencia"></p-button>
+        <p-button label="Rechazar" (click)="rechazarFormulario()"></p-button>
+        
+        <p-button label="Generar PDF" icon="pi pi-file-pdf" (click)="generarPdf()" *ngIf="formularioSeleccionado?.status === 'aprobado'"></p-button>
+        
+        <p-button label="Cerrar" (click)="cerrarDialogo()"></p-button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog header="Vista Previa del PDF" [(visible)]="displayDialogPdf" [modal]="true" [style]="{width: '80vw', height: '90vh'}" (onHide)="pdfUrl = null">
+    <iframe [src]="pdfUrl | safeUrl" style="width: 100%; height: 100%; border: none;"></iframe>
+    <ng-template pTemplate="footer">
+        <p-button label="Descargar" icon="pi pi-download" (click)="descargarPdf()"></p-button>
+    </ng-template>
+</p-dialog>

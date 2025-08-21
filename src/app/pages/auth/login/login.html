@@ -1,0 +1,73 @@
+<app-floating-configurator />
+
+<div class="login-container">
+<div class="bg-surface-50 dark:bg-surface-950 flex items-center justify-center min-h-screen min-w-screen overflow-hidden">
+  <div class="flex flex-col items-center justify-center">
+    <div style="border-radius: 56px; padding: 0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%)">
+      <div class="w-full bg-surface-0 dark:bg-surface-900 py-20 px-8 sm:px-20" style="border-radius: 53px">
+        <div class="text-center mb-1">
+          <div class="image-background-column-2"></div>
+    <div class="text-surface-900 dark:text-surface-0 text-3xl font-medium mb-2">BIENVENIDO AL SISTEMA SIDEHIDRO</div>
+    <span class="text-muted-color font-medium">Inicie Para Continuar</span>
+</div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div>
+            <label for="email" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Email</label>
+            <input
+              pInputText
+              id="email"
+              type="text"
+              placeholder="Email address"
+              class="w-full md:w-120 mb-2"
+              formControlName="email"
+              [ngClass]="{ 'ng-invalid ng-dirty': f['email'].touched && f['email'].errors }"
+            />
+            <div *ngIf="f['email'].touched && f['email'].errors" class="p-error text-sm mb-4">
+              <div *ngIf="f['email'].errors['required']">El email es requerido.</div>
+              <div *ngIf="f['email'].errors['email']">El formato del email no es válido.</div>
+            </div>
+          </div>
+
+          <div>
+            <label for="password" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2">Contraseña</label>
+            <p-password
+              id="password"
+              formControlName="password"
+              placeholder="Contraseña"
+              [toggleMask]="true"
+              styleClass="w-full mb-2"
+              [fluid]="true"
+              [feedback]="false"
+              [ngClass]="{ 'ng-invalid ng-dirty': f['password'].touched && f['password'].errors }"
+            ></p-password>
+            <div *ngIf="f['password'].touched && f['password'].errors" class="p-error text-sm mb-4">
+              <div *ngIf="f['password'].errors['required']">La contraseña es requerida.</div>
+              <div *ngIf="f['password'].errors['minlength']">La contraseña debe tener al menos 6 caracteres.</div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between mt-2 mb-8 gap-8">
+            <div class="flex items-center">
+              <p-checkbox id="rememberme1" binary class="mr-2"></p-checkbox>
+              <label for="rememberme1">Recordarme</label>
+            </div>
+            <span class="font-medium no-underline ml-2 text-right cursor-pointer text-primary">¿Olvidaste tu contraseña?</span>
+          </div>
+
+          <div *ngIf="errorMessage" class="p-message p-message-error mt-3 mb-4">
+            {{ errorMessage }}
+          </div>
+
+          <p-button type="submit" label="" styleClass="w-full" [disabled]="loginForm.invalid || isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true">Iniciar Seccion</span>
+            <span *ngIf="!isLoading">Iniciar Sesión</span>
+          </p-button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+</div>

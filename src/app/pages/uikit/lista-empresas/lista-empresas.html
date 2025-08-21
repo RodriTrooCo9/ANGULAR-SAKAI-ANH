@@ -1,0 +1,127 @@
+<p-toolbar styleClass="mb-6">
+    <ng-template pTemplate="left">
+        <p-button label="New" icon="pi pi-plus" severity="secondary" class="mr-2" (onClick)="openNew()" />
+        <p-button severity="secondary" label="Delete" icon="pi pi-trash" outlined (onClick)="deleteSelectedEmpresas()" [disabled]="!selectedEmpresas || !selectedEmpresas.length" />
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <p-button label="Export" icon="pi pi-upload" severity="secondary" (onClick)="exportCSV()" />
+    </ng-template>
+</p-toolbar>
+
+<p-table
+    #dt
+    [value]="formularios()"
+    [rows]="10"
+    [columns]="cols"
+    [paginator]="true"
+    [globalFilterFields]="['empresa.nombre', 'empresa.nit', 'empresa.email', 'status']"
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [(selection)]="selectedEmpresas"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} empresas"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 20, 30]"
+>
+    <ng-template pTemplate="caption">
+        <div class="flex items-center justify-between">
+            <h5 class="m-0">Gestión de Empresas</h5>
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search" />
+                <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." />
+            </p-iconfield>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 3rem">
+                <p-tableHeaderCheckbox />
+            </th>
+            <th>Logo</th>
+            <th pSortableColumn="empresa.nombre" style="min-width:16rem">
+                Nombre
+                <p-sortIcon field="empresa.nombre" />
+            </th>
+            <th pSortableColumn="empresa.tipoRed" style="min-width: 10rem">
+                Tipo de Red
+                <p-sortIcon field="empresa.tipoRed" />
+            </th>
+            <th pSortableColumn="empresa.email" style="min-width: 16rem">
+                Email
+                <p-sortIcon field="empresa.email" />
+            </th>
+            <th pSortableColumn="status" style="min-width: 12rem">
+                Estado
+                <p-sortIcon field="status" />
+            </th>
+            <th style="min-width: 12rem"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-formulario>
+        <tr>
+            <td style="width: 3rem">
+                <p-tableCheckbox [value]="formulario" />
+            </td>
+            <td>
+                <img [src]="formulario.empresa.logoUrl" [alt]="formulario.empresa.nombre" style="width: 64px" class="rounded" />
+            </td>
+            <td>{{ formulario.empresa.nombre }}</td>
+            <td>
+                <p-tag [value]="formulario.empresa.tipoRed" [severity]="getSeverityForRed(formulario.empresa.tipoRed)" />
+            </td>
+            <td>{{ formulario.empresa.email }}</td>
+            <td>
+                <p-tag [value]="formulario.status" [severity]="getSeverity(formulario.status)" />
+            </td>
+            <td>
+                <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editEmpresa(formulario)" />
+                <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" (click)="deleteEmpresa(formulario)" />
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="empresaDialog" [style]="{ width: '450px' }" header="Detalles de la Empresa" [modal]="true">
+    <ng-template pTemplate="content">
+        <div class="flex flex-col gap-6">
+            <img [src]="formulario.empresa.logoUrl" [alt]="formulario.empresa.nombre" class="block m-auto pb-4" *ngIf="formulario.empresa.logoUrl" />
+            <div>
+                <label for="nombre" class="block font-bold mb-3">Nombre</label>
+                <input type="text" pInputText id="nombre" [(ngModel)]="formulario.empresa.nombre" required autofocus fluid />
+                <small class="text-red-500" *ngIf="submitted && !formulario.empresa.nombre">El nombre es requerido.</small>
+            </div>
+            
+            <div>
+                <label for="nit" class="block font-bold mb-3">NIT</label>
+                <input type="text" pInputText id="nit" [(ngModel)]="formulario.empresa.nit" required fluid />
+                <small class="text-red-500" *ngIf="submitted && !formulario.empresa.nit">El NIT es requerido.</small>
+            </div>
+            
+            <div>
+                <label for="tipoRed" class="block font-bold mb-3">Tipo de Red</label>
+                <p-select [options]="tiposDeRed" [(ngModel)]="formulario.empresa.tipoRed" inputId="tipoRed" optionLabel="label" optionValue="value" placeholder="Selecciona un tipo" fluid />
+            </div>
+
+            <div>
+                <label for="email" class="block font-bold mb-3">Email</label>
+                <input type="email" pInputText id="email" [(ngModel)]="formulario.empresa.email" required fluid />
+            </div>
+            
+            <div>
+                <label for="telefono" class="block font-bold mb-3">Teléfono</label>
+                <p-inputnumber id="telefono" [(ngModel)]="formulario.empresa.telefono" mode="decimal" [useGrouping]="false" fluid />
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <p-button label="Cancelar" icon="pi pi-times" text (click)="hideDialog()" />
+        <p-button label="Guardar" icon="pi pi-check" (click)="saveEmpresa()" />
+    </ng-template>
+</p-dialog>
+
+<p-confirmdialog [style]="{ width: '450px' }" />
+
+
+    

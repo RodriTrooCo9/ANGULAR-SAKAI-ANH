@@ -1,0 +1,54 @@
+<p-card header="Listado de Empresas y Empleados" styleClass="shadow-2">
+    <div class="px-4">
+        <p-table 
+            [value]="trabajadoresConEmpresa" 
+            sortField="empresaNombre" 
+            sortMode="single" 
+            [scrollable]="true" 
+            scrollHeight="400px" 
+            rowGroupMode="subheader" 
+            groupRowsBy="empresaNombre" 
+            [tableStyle]="{ 'min-width': '60rem' }">
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre del Trabajador</th>
+                    <th>CI</th>
+                    <th>Estado</th>
+                    <th>Fecha de Contrato</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="groupheader" let-trabajador>
+                <tr pRowGroupHeader>
+                    <td colspan="4">
+                        <div class="flex align-items-center gap-2">
+                            <img [src]="trabajador.empresaLogo" width="32" style="vertical-align: middle" />
+                            <span class="font-bold">{{ trabajador.empresaNombre }}</span>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="groupfooter" let-trabajador>
+                <tr>
+                    <td colspan="4" class="text-right font-bold pr-12">
+                        Total de Trabajadores: {{ calculateTotalTrabajadores(trabajador.empresaNombre) }}
+                    </td>
+                </tr>
+            </ng-template>
+            
+            <ng-template pTemplate="body" let-trabajador>
+                <tr>
+                    <td>{{ trabajador.nombre }}</td>
+                    <td>{{ trabajador.ci }}</td>
+                    <td>
+                        <p-tag [value]="trabajador.estado" [severity]="getSeverity(trabajador.estado)"/>
+                    </td>
+                    <td>{{ trabajador.fechaContrato }}</td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+</p-card>

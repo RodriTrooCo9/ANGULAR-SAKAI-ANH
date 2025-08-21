@@ -1,0 +1,85 @@
+<div class="card p-4">
+  <p-card header="Renovar Datos de Empresa y Personal" styleClass="w-full">
+    <div *ngIf="formulario" class="formulario-container">
+
+      <p-card header="Datos de la Empresa" styleClass="mb-4">
+        <div class="grid p-fluid">
+          <div class="col-12 md:col-6">
+            <label class="font-semibold">Nombre:</label>
+            <p-inputtext [ngModel]="formulario.empresa.nombre" [disabled]="true"></p-inputtext>
+          </div>
+          <div class="col-12 md:col-6">
+            <label class="font-semibold">Fecha de Expiración:</label>
+            <p-inputtext [ngModel]="formulario.empresa.fechaExpiracion | date:'dd/MM/yyyy'" [disabled]="true"></p-inputtext>
+          </div>
+          <div class="col-12 mt-3">
+            <p-button label="Renovar Certificación de Empresa" icon="pi pi-refresh" (click)="renovarEmpresa()"></p-button>
+          </div>
+        </div>
+      </p-card>
+
+      <p-card header="Personal de la Empresa" styleClass="mb-4">
+        <div *ngFor="let trabajador of formulario.empleados" class="mb-4">
+          <p-panel [header]="'Datos de ' + trabajador.nombre" [toggleable]="true">
+            <div class="grid p-fluid">
+              <div class="col-12 md:col-6">
+                <label class="font-semibold">Última Renovación:</label>
+                <p-inputtext [ngModel]="trabajador.renovacion.ultimaRenovacion | date:'dd/MM/yyyy'" [disabled]="true"></p-inputtext>
+              </div>
+              <div class="col-12 md:col-6">
+                <label class="font-semibold">Fecha de Expiración:</label>
+                <p-inputtext [ngModel]="trabajador.renovacion.fechaExpiracion | date:'dd/MM/yyyy'" [disabled]="true"></p-inputtext>
+              </div>
+              <div class="col-12 mt-3">
+                <p-button label="Renovar Contrato" icon="pi pi-refresh" (click)="renovarPersonal(trabajador)"></p-button>
+              </div>
+            </div>
+
+            <p-card header="Experiencia Laboral" styleClass="mt-4">
+              <p-table [value]="trabajador.experiencias">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Puesto</th>
+                    <th>Descripción</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-exp>
+                  <tr>
+                    <td>{{ exp.puesto }}</td>
+                    <td>{{ exp.descripcion }}</td>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                  <tr>
+                    <td colspan="2">No hay experiencia laboral registrada.</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+              <div class="mt-3 text-right">
+                <p-button label="Añadir Nueva Experiencia" icon="pi pi-plus" (click)="abrirDialogoExperiencia(trabajador)"></p-button>
+              </div>
+            </p-card>
+          </p-panel>
+        </div>
+      </p-card>
+
+    </div>
+  </p-card>
+</div>
+
+<p-dialog header="Añadir Experiencia a {{ personalSeleccionado?.nombre }}" [(visible)]="displayDialog" [modal]="true" [style]="{width: '50vw'}" [resizable]="false">
+  <div class="p-fluid grid">
+    <div class="col-12">
+      <label for="puesto">Puesto</label>
+      <p-inputtext id="puesto" [(ngModel)]="nuevaExperiencia.puesto"></p-inputtext>
+    </div>
+    <div class="col-12 mt-3">
+      <label for="descripcion">Descripción</label>
+      <p-inputtextarea id="descripcion" [(ngModel)]="nuevaExperiencia.descripcion"></p-inputtextarea>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancelar" icon="pi pi-times" (click)="displayDialog = false" styleClass="p-button-text"></p-button>
+    <p-button label="Guardar" icon="pi pi-check" (click)="guardarExperiencia()"></p-button>
+  </ng-template>
+</p-dialog>

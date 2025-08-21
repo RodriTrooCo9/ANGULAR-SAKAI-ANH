@@ -1,0 +1,78 @@
+
+
+
+.perfil-usuario-container {
+    background-image: url('../../../../assets/img/banner.jpg');
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat;
+}
+
+
+.perfil-usuario-container.gradiente {
+    background: linear-gradient(to right, #ece9e6, #ffffff);
+}
+
+
+/* src/app/paginas/uikit/perfil-usuario/perfil-usuario.scss */
+/* src/app/paginas/uikit/perfil-usuario/perfil-usuario.scss */
+.p-panel-header {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 1rem 1rem 1rem 1.5rem; /* Ajuste para el espacio del borde */
+  border-left: 5px solid; /* Borde izquierdo para el color de resalte */
+  background-color: transparent !important; /* Asegurar que no haya fondo */
+  color: var(--text-color); /* Color de texto predeterminado */
+  box-shadow: none !important; /* Eliminar sombras predeterminadas */
+}
+
+/* Colores para cada sección */
+.p-panel-header.antonio {
+  border-color: #6c88f7;
+  box-shadow: 0 0 10px rgba(108, 136, 247, 0.5);
+}
+
+.p-panel-header.demografia {
+  border-color: #92e071;
+  box-shadow: 0 0 10px rgba(146, 224, 113, 0.5);
+}
+
+.p-panel-header.tecnologia {
+  border-color: #f7a36c;
+  box-shadow: 0 0 10px rgba(247, 163, 108, 0.5);
+}
+
+.p-panel-header.personal {
+  border-color: #6c88f7;
+  box-shadow: 0 0 10px rgba(108, 136, 247, 0.5);
+}
+
+.p-panel-header.motivaciones {
+  border-color: #92e071;
+  box-shadow: 0 0 10px rgba(146, 224, 113, 0.5);
+}
+
+.p-panel-header.objetivo {
+  border-color: #f7a36c;
+  box-shadow: 0 0 10px rgba(247, 163, 108, 0.5);
+}
+
+.p-panel-header.escenario {
+  border-color: #6c88f7;
+  box-shadow: 0 0 10px rgba(108, 136, 247, 0.5);
+}
+
+.p-panel-header.caracteristicas {
+  border-color: #92e071;
+  box-shadow: 0 0 10px rgba(146, 224, 113, 0.5);
+}
+
+.p-panel-header.acciones {
+  border-color: #f7a36c;
+  box-shadow: 0 0 10px rgba(247, 163, 108, 0.5);
+}
+
+/* Eliminar el estilo por defecto del p-panel */
+.p-panel {
+  border: none;
+}

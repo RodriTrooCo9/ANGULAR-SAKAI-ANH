@@ -1,0 +1,99 @@
+<div class="flex h-screen">
+    <div class="w-1/2 p-5 overflow-y-auto">
+        <div class="card p-5 w-full">
+            <div class="font-semibold text-2xl text-center mb-5">Registro de Empresa</div>
+            
+            <form (ngSubmit)="enviarFormulario()">
+                
+                <div class="font-semibold text-xl mb-3">Información General de la Empresa</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="field">
+                        <label for="nombreEmpresa" class="block font-bold mb-2">Nombre de la Empresa</label>
+                        <input pInputText id="nombreEmpresa" type="text" [(ngModel)]="formulario.empresa.nombre" name="nombreEmpresa" required autofocus class="w-full" />
+                        <small class="p-error" *ngIf="!formulario.empresa.nombre">El nombre es obligatorio.</small>
+                    </div>
+                    
+                    <div class="field">
+                        <label for="siglas" class="block font-bold mb-2">Siglas (Ej: ANH)</label>
+                        <input pInputText id="siglas" type="text" [(ngModel)]="formulario.empresa.iniciales" name="siglas" class="w-full" />
+                    </div>
+
+                    <div class="field">
+                        <label for="nit" class="block font-bold mb-2">NIT</label>
+                        <input pInputText id="nit" type="text" [(ngModel)]="formulario.empresa.nit" name="nit" required class="w-full" />
+                        <small class="p-error" *ngIf="!formulario.empresa.nit">El NIT es obligatorio.</small>
+                    </div>
+
+                    <div class="field md:col-span-2 lg:col-span-3">
+                        <label for="direccion" class="block font-bold mb-2">Dirección Principal</label>
+                        <textarea pInputTextarea id="direccion" rows="3" [(ngModel)]="empresa.direccion" name="direccion" placeholder="Calle, ciudad, país..." class="w-full"></textarea>
+                    </div>
+                </div>
+
+                <div class="font-semibold text-xl mb-3">Datos de Contacto y Archivos</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="field">
+                        <label for="emailEmpresa" class="block font-bold mb-2">Email</label>
+                        <input pInputText id="emailEmpresa" type="email" [(ngModel)]="formulario.empresa.email" name="emailEmpresa" class="w-full" />
+                    </div>
+                    
+                    <div class="field">
+                        <label for="telefonoEmpresa" class="block font-bold mb-2">Teléfono</label>
+                        <input pInputText id="telefonoEmpresa" type="tel" [(ngModel)]="formulario.empresa.telefono" name="telefonoEmpresa" class="w-full" />
+                    </div>
+
+                    <div class="field md:col-span-2">
+                        <label for="fotoEmpresa" class="block font-bold mb-2">Subir Foto de la Empresa</label>
+                        <input id="fotoEmpresa" type="file" accept="image/*" (change)="onFileChange($event)" class="w-full text-base" />
+                    </div>
+                </div>
+
+                <div class="font-semibold text-xl mb-3">Detalles del Puesto y Asignación</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="field">
+                        <label for="cargoAsignado" class="block font-bold mb-2">Cargo Asignado</label>
+                        <input pInputText id="cargoAsignado" type="text" [(ngModel)]="empresa.cargoAsignado" name="cargoAsignado" required class="w-full" />
+                        <small class="p-error" *ngIf="!empresa.cargoAsignado">El cargo es obligatorio.</small>
+                    </div>
+                    
+                    <div class="field">
+                        <label for="areaAsignada" class="block font-bold mb-2">Área Asignada</label>
+                        <p-select [options]="areas" [(ngModel)]="empresa.areaAsignada" name="areaAsignada" placeholder="Selecciona un área" optionLabel="label" optionValue="value" class="w-full"></p-select>
+                    </div>
+                    
+                    <div class="field">
+                        <label for="categoriaPuesto" class="block font-bold mb-2">Categoría del Puesto</label>
+                        <p-select [options]="dropdownItems" [(ngModel)]="empresa.categoriaPuesto" name="categoriaPuesto" placeholder="Selecciona una categoría" optionLabel="name" optionValue="code" class="w-full"></p-select>
+                    </div>
+                    
+                    <div class="field">
+                        <label for="numeroAutorizacion" class="block font-bold mb-2">Número de Autorización</label>
+                        <input pInputText id="numeroAutorizacion" type="text" [(ngModel)]="empresa.numeroAutorizacion" name="numeroAutorizacion" class="w-full" />
+                    </div>
+                    
+                    <div class="field">
+                        <label for="fechaAsignacion" class="block font-bold mb-2">Fecha de Asignación</label>
+                        <p-datepicker [showIcon]="true" [showButtonBar]="true" [(ngModel)]="empresa.fechaAsignacionPuesto" name="fechaAsignacionPuesto" class="w-full"></p-datepicker>
+                    </div>
+                    
+                    <div class="field md:col-span-2 lg:col-span-3">
+                        <label for="observaciones" class="block font-bold mb-2">Observaciones</label>
+                        <textarea pInputTextarea id="observaciones" rows="3" [(ngModel)]="empresa.observaciones" name="observaciones" placeholder="Añade cualquier observación relevante aquí." class="w-full"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-6">
+                    <div class="flex items-center gap-2">
+                        <p-checkbox [(ngModel)]="empresa.aprobacionAsignacion" name="aprobacionAsignacion" binary="true"></p-checkbox>
+                        <label for="aprobacionAsignacion">Aprobación de la Asignación</label>
+                    </div>
+                    <p-button label="✓ Enviar Formulario" type="submit" icon="pi pi-check"></p-button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="hidden md:flex w-1/2 bg-gray-800 justify-center items-center">
+        <img src="https://images.unsplash.com/photo-1517436066266-9a3c0ae04780?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NDgyMjZ8MHwxfHNlYXJjaHwxNXx8bW9kZXJuJTIwY29ycG9yYXRlJTIwb2ZmaWNlJTIwZGVzaWdufGVufDB8fHx8MTcxMzY0ODYwNHww&ixlib=rb-4.0.3&q=80&w=1080" alt="Imagen de fondo" class="h-full w-full object-cover">
+    </div>
+</div>

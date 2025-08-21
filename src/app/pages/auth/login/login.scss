@@ -1,0 +1,51 @@
+.image-background-column-2 {
+ 
+    background-image: url('../../../../assets/img/logohidro.png'); 
+ 
+  
+    width: 200px; 
+    height: 200px; 
+
+    background-size: contain;
+    //background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+
+
+
+
+
+/* Aplicar la imagen de fondo al contenedor principal del login */
+.login-container {
+    background-image: url("../../../../assets/img/banner.jpg"); /* RUTA CORREGIDA */
+    background-size: cover;          /* Escala la imagen para cubrir el contenedor */
+    background-position: center center; /* Centra la imagen */
+    background-repeat: no-repeat;    /* Evita que la imagen se repita */
+    background-attachment: fixed;    /* Mantiene la imagen fija al hacer scroll (opcional, pero mejora la estética) */
+    min-height: 100vh;               /* Asegura que el contenedor ocupe al menos toda la altura de la ventana */
+    width: 100%;              
+          /* Asegura que el contenedor ocupe todo el ancho */
+
+    /* Importante: Estas propiedades de flexbox ya las tienes en el div interno
+       pero si el .login-container es el que quieres que lo centre todo, puedes ponerlas aquí.
+       Sin embargo, tu HTML ya tiene estas propiedades en el div anidado, lo cual está bien.
+       Mejor asegurémonos de que ese div anidado no tenga su propio background que tape la imagen.
+    */
+}
+
+/* Sobreescribir el fondo del div interno de PrimeNG/Tailwind que puede estar ocultando tu imagen */
+/* El div con 'bg-surface-50 dark:bg-surface-950' es el que probablemente está ocultando la imagen. */
+.bg-surface-50 {
+    background-color: transparent !important; /* Hazlo transparente para que se vea la imagen del padre */
+}
+
+/* O, si prefieres tener un color de superposición (overlay) semi-transparente sobre la imagen: */
+/* .bg-surface-50 {
+    background-color: rgba(255, 255, 255, 0.7) !important; // Blanco semi-transparente
+    // O un color oscuro semi-transparente para temas oscuros
+    // background-color: rgba(0, 0, 0, 0.5) !important;
+} */
+
+

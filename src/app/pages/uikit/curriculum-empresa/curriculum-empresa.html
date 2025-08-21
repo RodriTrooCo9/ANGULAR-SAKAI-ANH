@@ -1,0 +1,14 @@
+<div class="curriculum-container">
+  <h2>Datos de la Empresa</h2>
+  
+  <div *ngIf="empresaData">
+    <p><strong>Nombre de la Empresa:</strong> {{ empresaData.nombre }}</p>
+    <p><strong>NIT:</strong> {{ empresaData.nit }}</p>
+    <p><strong>Dirección:</strong> {{ empresaData.direccion }}</p>
+    <p><strong>Teléfono:</strong> {{ empresaData.telefono }}</p>
+    </div>
+  
+  <div *ngIf="!empresaData">
+    <p>No se encontraron datos de la empresa.</p>
+  </div>
+</div>
