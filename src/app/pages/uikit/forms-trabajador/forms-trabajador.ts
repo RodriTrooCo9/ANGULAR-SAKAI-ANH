@@ -18,6 +18,9 @@ import { DatePickerModule } from 'primeng/datepicker';
 //import { DropdownModule } from 'primeng/dropdown';
 //import { CalendarModule } from 'primeng/calendar';
 
+import { PerfilService } from '../../../services/perfil.service';
+import { Usuario } from '../../../models/perfil-usuario.model';
+
 
 import { MessageService } from 'primeng/api';
 
@@ -37,7 +40,8 @@ import { MessageService } from 'primeng/api';
     InputGroupModule,
     InputGroupAddonModule,
     SelectModule,
-    DatePickerModule
+    DatePickerModule,
+    
   ],
   templateUrl: './forms-trabajador.html',
   styleUrls: ['./forms-trabajador.scss'],
@@ -67,7 +71,9 @@ export class FormsTrabajador implements OnInit {
     { name: 'Indefinido', code: 'INDEFINIDO' },
   ];
 
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private messageService: MessageService,
+    private perfilService: PerfilService) { }
 
   ngOnInit(): void {
     this.trabajador = {
@@ -78,6 +84,27 @@ export class FormsTrabajador implements OnInit {
   enviarFormulario() {
     this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Formulario enviado.' });
     console.log('Formulario enviado:', this.trabajador);
+
+    const nuevoUsuario: Usuario = {
+      // Usar un ID temporal, en un caso real vendría de la base de datos
+      id: '1', 
+      nombre: this.trabajador.nombresApellidos.split(' ')[0],
+      apellido: this.trabajador.nombresApellidos.split(' ').slice(1).join(' '),
+      email: '', // No está en el formulario, se podría añadir
+      telefono: this.trabajador.numeroCelular,
+      fechaNacimiento: this.trabajador.fechaNacimiento,
+      direccion: this.trabajador.direccionDomicilio,
+      rol: 'Empleado', // Valor por defecto
+      bio: '', // Se podría añadir un campo de biografía al formulario
+      habilidades: [], // Se podría añadir un campo de habilidades
+      edad: 0, // Se puede calcular a partir de la fecha de nacimiento
+      ingresos: 0, // Se podría añadir este campo
+      profesion: '', // Se podría añadir este campo
+      avatarUrl: '' // Se podría añadir la URL de la foto subida
+    };
+
+
+
   }
    agregarExperiencia() {
     if (this.experiencias.length < 5) {

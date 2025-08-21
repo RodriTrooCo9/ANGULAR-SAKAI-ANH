@@ -110,6 +110,12 @@ export class AppMenu implements OnInit {
             icon: 'pi pi-fw pi-eye',
             routerLink: ['/uikit/observaciones'],
             roles: ['Usuario', 'Admin', 'Desarrollador'],
+          },
+          {
+            label: 'AreaLegal',
+            icon:'pi pi-id-card',
+            routerLink: ['/uikit/area-legal'],
+            roles: ['admin','Desarrollador']
           },   
         ],
 

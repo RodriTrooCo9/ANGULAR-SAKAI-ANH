@@ -40,6 +40,8 @@ import { Personal } from '../uikit/personal/personal';
 
 import { CurriculumEmpresa } from './curriculum-empresa/curriculum-empresa';
 import { Solicitud } from './solicitud/solicitud';
+import { AreaLegal }from "./area-legal/area-legal";
+import { Breadcrumb } from 'primeng/breadcrumb';
 export default [
 
     /*
@@ -59,6 +61,7 @@ export default [
     {path:'forms-pendientes', data: { breadcrumb: 'Forms Pendientes' }, component: FormsPendientes}, 
     {path:'perfil-usuario', data: {Breadcrumb: 'Perfil'},component: PerfilUsuario},
     {path: 'renovar-formulario', data: {Breadcrumb: 'Renovar Formulario'}, component: RenovarFormulario},
+    {path: 'area-legal', data: {Breadcrumb: 'Area Legal'}, component: AreaLegal},
 
 
     /*

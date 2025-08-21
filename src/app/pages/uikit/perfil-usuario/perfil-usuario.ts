@@ -9,6 +9,8 @@ import { PanelModule } from 'primeng/panel';
 import { TagModule } from 'primeng/tag';
 import { InputTextModule } from 'primeng/inputtext';
 import { Usuario } from '../../../models/perfil-usuario.model';
+import { PerfilService } from '../../../services/perfil.service';
+
 
 
 @Component({
@@ -24,7 +26,7 @@ import { Usuario } from '../../../models/perfil-usuario.model';
     PanelModule,
     TagModule,
     InputTextModule,
-
+  
 ],
   templateUrl: './perfil-usuario.html',
   styleUrls: ['./perfil-usuario.scss']
@@ -33,9 +35,13 @@ export class PerfilUsuario implements OnInit {
 
   @Input() usuario!: Usuario;
 
-  constructor() { }
+  constructor(private perfilService: PerfilService) { }
 
   ngOnInit(): void {
+
+     this.perfilService.usuarioActualizado$.subscribe(nuevoUsuario => {
+      this.usuario = nuevoUsuario;
+    });
     // Si no se recibe un usuario, se puede inicializar con datos de ejemplo
     if (!this.usuario) {
       this.usuario = {

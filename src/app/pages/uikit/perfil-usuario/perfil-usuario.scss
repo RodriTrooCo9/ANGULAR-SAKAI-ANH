@@ -1,78 +1,92 @@
-
-
-
 .perfil-usuario-container {
     background-image: url('../../../../assets/img/banner.jpg');
-    background-size: cover; 
-    background-position: center center; 
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-attachment: fixed; /* Opcional: para que el fondo no se mueva al hacer scroll */
 }
 
-
-.perfil-usuario-container.gradiente {
-    background: linear-gradient(to right, #ece9e6, #ffffff);
+.surface-card {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
 }
 
-
-/* src/app/paginas/uikit/perfil-usuario/perfil-usuario.scss */
-/* src/app/paginas/uikit/perfil-usuario/perfil-usuario.scss */
-.p-panel-header {
-  font-weight: bold;
-  font-size: 1.2rem;
-  padding: 1rem 1rem 1rem 1.5rem; /* Ajuste para el espacio del borde */
-  border-left: 5px solid; /* Borde izquierdo para el color de resalte */
-  background-color: transparent !important; /* Asegurar que no haya fondo */
-  color: var(--text-color); /* Color de texto predeterminado */
-  box-shadow: none !important; /* Eliminar sombras predeterminadas */
+.surface-card:hover {
+    transform: scale(1.01);
 }
 
-/* Colores para cada sección */
-.p-panel-header.antonio {
-  border-color: #6c88f7;
-  box-shadow: 0 0 10px rgba(108, 136, 247, 0.5);
+/* Avatar circular con efecto */
+img {
+    border-radius: 50%;
+    border: 5px solid #6c88f7;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.p-panel-header.demografia {
-  border-color: #92e071;
-  box-shadow: 0 0 10px rgba(146, 224, 113, 0.5);
+img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(108, 136, 247, 0.7);
 }
 
-.p-panel-header.tecnologia {
-  border-color: #f7a36c;
-  box-shadow: 0 0 10px rgba(247, 163, 108, 0.5);
+/* Título */
+.text-3xl {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
 }
 
-.p-panel-header.personal {
-  border-color: #6c88f7;
-  box-shadow: 0 0 10px rgba(108, 136, 247, 0.5);
+/* Panel headers modernizados */
+.p-panel-header-modern {
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.8rem;
+    transition: all 0.3s ease;
+    background: linear-gradient(90deg, #f9f9f9, #fff);
+    border-left: 6px solid;
+    cursor: pointer;
 }
 
-.p-panel-header.motivaciones {
-  border-color: #92e071;
-  box-shadow: 0 0 10px rgba(146, 224, 113, 0.5);
+.p-panel-header-modern:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.p-panel-header.objetivo {
-  border-color: #f7a36c;
-  box-shadow: 0 0 10px rgba(247, 163, 108, 0.5);
+/* Colores personalizados (manteniendo tu esquema) */
+.p-panel-header.antonio { border-color: #6c88f7; color: #6c88f7; }
+.p-panel-header.demografia { border-color: #92e071; color: #4a7f2d; }
+.p-panel-header.tecnologia { border-color: #f7a36c; color: #c75c1c; }
+.p-panel-header.personal { border-color: #9b59b6; color: #6c3483; }
+.p-panel-header.motivaciones { border-color: #16a085; color: #0e6655; }
+.p-panel-header.objetivo { border-color: #3498db; color: #21618c; }
+.p-panel-header.escenario { border-color: #e67e22; color: #a04000; }
+.p-panel-header.caracteristicas { border-color: #2ecc71; color: #196f3d; }
+.p-panel-header.acciones { border-color: #e74c3c; color: #922b21; }
+
+/* Listas más limpias */
+ul {
+    padding-left: 1rem;
 }
 
-.p-panel-header.escenario {
-  border-color: #6c88f7;
-  box-shadow: 0 0 10px rgba(108, 136, 247, 0.5);
+ul li {
+    margin: 0.4rem 0;
+    font-size: 0.95rem;
+    color: #444;
 }
 
-.p-panel-header.caracteristicas {
-  border-color: #92e071;
-  box-shadow: 0 0 10px rgba(146, 224, 113, 0.5);
+/* Asegurar que el contenido del panel no tenga bordes o fondos extra */
+.p-panel-content {
+    border: none !important;
+    background-color: transparent !important;
 }
 
-.p-panel-header.acciones {
-  border-color: #f7a36c;
-  box-shadow: 0 0 10px rgba(247, 163, 108, 0.5);
-}
-
-/* Eliminar el estilo por defecto del p-panel */
-.p-panel {
-  border: none;
+/* Ajuste de margen para la sección del nombre y profesión */
+.text-4xl.font-bold {
+    margin-bottom: 0.5rem;
 }

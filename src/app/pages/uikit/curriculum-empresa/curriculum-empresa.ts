@@ -1,9 +1,13 @@
 // src/app/curriculum-empresa/curriculum-empresa.component.ts
 import { Component, OnInit } from '@angular/core';
 import { DataSharingService } from '../../../services/data-sharing.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-curriculum-empresa',
+  standalone: true,
+  imports:[ CommonModule],
   templateUrl: './curriculum-empresa.html',
   styleUrls: ['./curriculum-empresa.scss']
 })
