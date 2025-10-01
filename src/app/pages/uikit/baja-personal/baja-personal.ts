@@ -56,6 +56,7 @@ interface Trabajador {
     providers: [MessageService, ConfirmationService]
 })
 export class BajaPersonal implements OnInit {
+
     @ViewChild('dt') dt: Table | undefined;
 
     trabajadores: Trabajador[] = [];
